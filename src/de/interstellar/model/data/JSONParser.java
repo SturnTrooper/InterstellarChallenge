@@ -58,14 +58,15 @@ public class JSONParser {
 		try {
 			arr = obj.getJSONArray(pName);
 		} catch(JSONException ex) {
-			System.out.println("Bla");
+			System.out.println("Array with name " + "[" + pName + "] not found");
+			System.out.println(ex.getMessage());
 		}
 		
 		return arr;
 		
 	}
 	
-	/** This function retrieves the value of a specific key from a given
+	/** This function retrieves the string value of a specific key from a given
 	 *  JSONObject. If the JSONObject does not contain the given key,
 	 *  then an empty String will be returned.
 	 * 
@@ -76,7 +77,7 @@ public class JSONParser {
 	 * @param pValueKey => key to the value we want to retrieve
 	 * @return value of the matching key
 	 */
-	public String retrieveValue(JSONObject pObject, String pValueKey) {
+	public String retrieveStringValue(JSONObject pObject, String pValueKey) {
 		
 		String value = "";
 		
@@ -84,9 +85,62 @@ public class JSONParser {
 			value = pObject.getString(pValueKey);
 		} catch(JSONException ex) {
 			System.out.println("[" + pValueKey + "]" + " " + "not found in JSONObject");
+			System.out.println(ex.getMessage());
 		}
 
 		return value;
+	}
+	
+	/** This function retrieves the double value of a specific key from a given
+	 *  JSONObject. If the JSONObject does not contain the given key,
+	 *  then the default value -1.0 will be returned.
+	 *  
+	 * @author Florian Sturn
+	 * @date 16.05.2019 
+	 * 
+	 * @param pObject => JSONObject from which to retrieve a value
+	 * @param pValueKey => key to the value we want to retrieve
+	 * @return value of the matching key
+	 */
+	public double retrieveDoubleValue(JSONObject pObject, String pValueKey) {
+		
+		double value = -1.0;
+		
+		try {
+			value = pObject.getDouble(pValueKey);
+		} catch(JSONException ex) {
+			System.out.println("[" + pValueKey + "]" + " " + "not found in JSONObject");
+			System.out.println(ex.getMessage());
+		}
+
+		return value;
+		
+		
+	}
+	
+	/** This function retrieves the integer value of a specific key form a given
+	 *  JSONObject. If the JSONObject does not contain the given key,
+	 *  then the default value -1 will be returned.
+	 *
+	 * @author Florian Sturn
+	 * @date 16.05.2019
+	 * 
+	 * @param pObject => JSONObject from which to retrieve a value
+	 * @param pValueKey => key to the value we want to retrieve
+	 * @return value of the matching key
+	 */
+	public int retrieveIntegerValue(JSONObject pObject, String pValueKey) {
+		
+		int value = -1;
+		
+		try {
+			value = pObject.getInt(pValueKey);
+		} catch(JSONException ex) {
+			System.out.println("[" + pValueKey + "]" + " " + "not found in JSONObject");
+			System.out.println(ex.getMessage());
+		}
+
+		return value;		
 	}
 
 }

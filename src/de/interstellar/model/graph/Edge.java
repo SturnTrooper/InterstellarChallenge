@@ -1,5 +1,12 @@
 package de.interstellar.model.graph;
 
+/**
+ * 
+ * 
+ * @author Florian Sturn
+ * @date 16.05.2019
+ *
+ */
 public class Edge {
 	
 	private String name;
