@@ -1,6 +1,9 @@
 package de.interstellar.model.graph;
 
-/**
+/** This class represents an Edge. An edge connects two nodes
+ *  with each other. Each edge has a source node, a target node
+ *  a name and a cost, which tells us how expensive it its to get
+ *  from the target to the source.
  * 
  * 
  * @author Florian Sturn

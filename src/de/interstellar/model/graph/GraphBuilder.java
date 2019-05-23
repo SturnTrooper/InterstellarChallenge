@@ -1,5 +1,6 @@
 package de.interstellar.model.graph;
 
+
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -110,12 +111,14 @@ public class GraphBuilder {
 			
 			//Update the neighbor list of the source and target node. Also update the
 			//target as we are dealing with an undirected Graph.			
-			if(!sourceNode.getNeighbors().contains(destinationID)) {
-				sourceNode.getNeighbors().add(destinationID);
+			if(!sourceNode.getNeighbors().contains(destinationNode)) {
+				sourceNode.getNeighbors().add(destinationNode);
+				//nodes.put(sourceID, sourceNode);
 			}
 			
-			if(destinationNode.getNeighbors().contains(sourceID)) {
-				destinationNode.getNeighbors().add(sourceID);
+			if(!destinationNode.getNeighbors().contains(sourceNode)) {
+				destinationNode.getNeighbors().add(sourceNode);
+				//nodes.put(destinationID, destinationNode);
 			}
 						
 			//Create an edge based on the given source, target and costs. The name of the edge
@@ -123,10 +126,14 @@ public class GraphBuilder {
 			Edge sourceToDestinationEdge = new Edge(sourceID + "To" + destinationID,sourceNode,destinationNode,cost);
 			edgeList.put(sourceToDestinationEdge.getName(), sourceToDestinationEdge);
 			
+			//System.out.println(sourceToDestinationEdge.getName());
+			
 			//As the graph is undirected we also create a edge for the reverse direction (target to source) with
 			//the same cost given by the data.
 			Edge destinationToSourceEdge = new Edge(destinationID + "To" + sourceID,destinationNode,sourceNode,cost);
 			edgeList.put(destinationToSourceEdge.getName(), destinationToSourceEdge);
+			
+			//System.out.println(destinationToSourceEdge.getName());
 		
 		}
 				
